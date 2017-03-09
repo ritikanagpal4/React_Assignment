@@ -22,7 +22,8 @@ export class Header extends React.Component {
 			<div>
 				<center>
 					<h1>Existing Polls</h1>
-					<br/></center>
+					<br/>
+				</center>
 			</div>
 		);
 	}
