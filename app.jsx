@@ -57,7 +57,7 @@ export class TableRow extends React.Component {
 					<div>
 							Poll=&gt;
 							<b>{this.props.data.name}</b>!
-				  </div>
+				 	</div>
 					<div>Option 1 :
 						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.optone}/>{this.props.data.optone}
 					</div>
@@ -71,7 +71,7 @@ export class TableRow extends React.Component {
 						<span style={stylepoll}> {pollOpinion} </span>
 					</div>
 					<div>
-							<button className="btn-primary btn pull-right" onClick={this.handleSubmit}>Submit</button>
+						<button className="btn-primary btn pull-right" onClick={this.handleSubmit}>Submit</button>
 					</div>
 			</div>
 		);
