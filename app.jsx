@@ -36,11 +36,16 @@ export class TableRow extends React.Component {
 		this.select = this.select.bind(this);
 	}
 	handleSubmit(evt) {
-		alert("Your opinion : '" + this.state.value + "'  has been submitted..!!!")
+		if(this.state.opinion){
+			alert("Your opinion : '" + this.state.value + "'  has been submitted..!!!")
+		}
+		else{
+			alert('Please Select an Option')
+		}
 		console.log(data)
 	}
 	select(evt) {
-		this.setState({value: evt.target.value})
+		this.setState({value: evt.target.value,opinion:1})
 	}
 	render() {
 		var pollOpinion = '';
@@ -57,21 +62,25 @@ export class TableRow extends React.Component {
 					<div>
 							Poll=&gt;
 							<b>{this.props.data.name}</b>!
-				 	</div>
-					<div>Option 1 :
+				  </div>
+					<div>
+						<label> Option 1 :</label>
 						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.optone}/>{this.props.data.optone}
 					</div>
-					<div>Option 2 :
+					<div>
+						<label>Option 2 :</label>
 						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.opttwo}/>{this.props.data.opttwo}
 					</div>
-					<div>Option 3 :
+					<div>
+						<label>Option 3 :</label>
 						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.optthree}/>{this.props.data.optthree}
 					</div>
-					<div>Your Opinion:
+					<div>
+						<label>Your Opinion :</label>
 						<span style={stylepoll}> {pollOpinion} </span>
 					</div>
 					<div>
-						<button className="btn-primary btn pull-right" onClick={this.handleSubmit}>Submit</button>
+							<button className="btn-primary btn pull-right" onClick={this.handleSubmit}>Submit</button>
 					</div>
 			</div>
 		);
@@ -94,20 +103,30 @@ export class AddPoll extends React.Component {
 		this.submit = this.submit.bind(this);
 	}
 	submit() {
-		var AddPollData = [
-			{
-				name: this.state.name,
-				optone: this.state.optone,
-				opttwo: this.state.opttwo,
-				optthree: this.state.optthree
-			}
-		]
-		const initialArray = data;
-		const newArray = update(initialArray, {$push: AddPollData});
-		data = newArray;
-		this.setState({data: data});
-		this.props.aim(data);
+		if(this.state.name&&this.state.optone&&this.state.opttwo&&this.state.optthree ){
+			var AddPollData = [
+				{
+					name: this.state.name,
+					optone: this.state.optone,
+					opttwo: this.state.opttwo,
+					optthree: this.state.optthree
+				}
+			]
+			const initialArray = data;
+			const newArray = update(initialArray, {$push: AddPollData});
+			data = newArray;
+			this.setState({data: data});
+			this.props.aim(data);
+			this.setState({
+				name: '',
+				optone: '',
+				opttwo: '',
+				optthree: ''
+			})
+			alert('Congratulations...!!   Poll has been added successfully.')
 		}
+		else {alert("fields are empty. Enter the values and try again")}
+	}
 	handleName(event) {
 		this.setState({name: event.target.value});
 	}
