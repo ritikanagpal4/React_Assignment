@@ -31,60 +31,48 @@ export class Header extends React.Component {
 export class TableRow extends React.Component {
 	constructor() {
 		super();
-		this.state = {
-			value: '',
-			opnion: ''
-		}
+		this.state = {value: '',opinion: ''}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.select = this.select.bind(this);
 	}
 	handleSubmit(evt) {
-		alert("Your opinion :     '" + this.state.value + "'      has been submitted..!!!")
+		alert("Your opinion : '" + this.state.value + "'  has been submitted..!!!")
 		console.log(data)
 	}
 	select(evt) {
-		this.setState({value: evt.target.value, opinion: 1})
+		this.setState({value: evt.target.value})
 	}
 	render() {
 		var pollOpinion = '';
-		var stylepoll = {
-			color: 'red',
-			fontsize: 5
-		}
+		var stylepoll = {color: 'red',fontsize: 5}
 		if (this.state.opinion) {
 			pollOpinion = this.state.value;
-			stylepoll = {
-				color: 'blue',
-				fontsize: 5
-			}
-		} else {
+			stylepoll = {color: 'blue',fontsize: 5}
+		}
+		else {
 			pollOpinion = 'Not yet selected'
 		}
 		return (
 			<div className="jumbotron">
-				<div>
-					Poll=&gt; &nbsp;
-					<b>{this.props.data.name}</b>!
-				</div>
-				<div>Option 1 :&nbsp;&nbsp;<input type="radio" name="poll" onChange={(event) => {
-				this.select(event)
-			}} value={this.props.data.optone}/>&nbsp;{this.props.data.optone}
-				</div>
-				<div>Option 2 :&nbsp;&nbsp;<input type="radio" name="poll" onChange={(event) => {
-				this.select(event)
-			}} value={this.props.data.opttwo}/>&nbsp;{this.props.data.opttwo}
-				</div>
-				<div>Option 3 :&nbsp;&nbsp;<input type="radio" name="poll" onChange={(event) => {
-				this.select(event)
-			}} value={this.props.data.optthree}/>&nbsp;{this.props.data.optthree}</div>
-				<div>Your Opinion:
-					<span style={stylepoll}>
-						{pollOpinion}</span>
-				</div>
-				<div>
-					<button className="btn-primary btn pull-right" onClick={this.handleSubmit}>
-						Submit</button>
-				</div>
+					<div>
+							Poll=&gt;
+							<b>{this.props.data.name}</b>!
+				  </div>
+					<div>Option 1 :
+						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.optone}/>{this.props.data.optone}
+					</div>
+					<div>Option 2 :
+						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.opttwo}/>{this.props.data.opttwo}
+					</div>
+					<div>Option 3 :
+						<input type="radio" name="poll" onChange={(event) => {this.select(event)}} value={this.props.data.optthree}/>{this.props.data.optthree}
+					</div>
+					<div>Your Opinion:
+						<span style={stylepoll}> {pollOpinion} </span>
+					</div>
+					<div>
+							<button className="btn-primary btn pull-right" onClick={this.handleSubmit}>Submit</button>
+					</div>
 			</div>
 		);
 	}
@@ -114,16 +102,12 @@ export class AddPoll extends React.Component {
 				optthree: this.state.optthree
 			}
 		]
-		// console.log(data);
 		const initialArray = data;
 		const newArray = update(initialArray, {$push: AddPollData});
 		data = newArray;
 		this.setState({data: data});
 		this.props.aim(data);
-		/*alert('ques: ' + this.state.name + '  option1:  ' + this.state.optone + '  option2:  ' + this.state.opttwo + '  option3:  ' + this.state.optthree)
-		this.setState({name: '', optone: '', opttwo: '', optthree: ''})
-*/
-	}
+		}
 	handleName(event) {
 		this.setState({name: event.target.value});
 	}
@@ -139,32 +123,26 @@ export class AddPoll extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>
-					Add a new Poll
-				</h1><br/>
-				<div className='jumbotron'>
-					<div className="form-group">
-						<label htmlFor="newpoll">New Poll:</label>
-						<input type="text" className="form-control" id="newpoll" placeholder="Enter new poll" onChange={(event) => {
-							this.handleName(event)
-						}} value={this.state.name}/></div>
-					<div className="form-group">
-						<label htmlFor="optone">Option 1:</label>
-						<input type="text" className="form-control" id="optone" placeholder="Enter option" onChange={(event) => {
-							this.handleOne(event)
-						}} value={this.state.optone}/></div>
-					<div className="form-group">
-						<label htmlFor="opttwo">Option 2:</label>
-						<input type="text" className="form-control" id="opttwo" placeholder="Enter option" onChange={(event) => {
-							this.handleTwo(event)
-						}} value={this.state.opttwo}/></div>
-					<div className="form-group">
-						<label htmlFor="optthree">Option 3:</label>
-						<input type="text" className="form-control" id="optthree" placeholder="Enter option" onChange={(event) => {
-							this.handleThree(event)
-						}} value={this.state.optthree}/></div>
-					<button className="btn btn-default btn-primary" onClick={this.submit}>Submit</button>
-				</div>
+					<h1>Add a new Poll</h1>
+					<div className='jumbotron'>
+						<div className="form-group">
+							<label htmlFor="newpoll">New Poll:</label>
+							<input type="text" className="form-control" id="newpoll" placeholder="Enter new poll" onChange={(event) => {this.handleName(event)}} value={this.state.name}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="optone">Option 1:</label>
+							<input type="text" className="form-control" id="optone" placeholder="Enter option" onChange={(event) => {this.handleOne(event)}} value={this.state.optone}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="opttwo">Option 2:</label>
+							<input type="text" className="form-control" id="opttwo" placeholder="Enter option" onChange={(event) => {this.handleTwo(event)}} value={this.state.opttwo}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="optthree">Option 3:</label>
+							<input type="text" className="form-control" id="optthree" placeholder="Enter option" onChange={(event) => {this.handleThree(event)}} value={this.state.optthree}/>
+						</div>
+						<button className="btn btn-default btn-primary" onClick={this.submit}>Submit</button>
+					</div>
 			</div>
 		);
 	}
