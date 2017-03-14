@@ -172,7 +172,7 @@ export class AddPoll extends React.Component {
 		this.setState({expiry:date});
 	}
 	componentDidMount(){
-			$('.datepicker').datepicker()
+		$('.datepicker').datepicker()
 	}
 	showModal(){
 		this.refs.modal.show()
